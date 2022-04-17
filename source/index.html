@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+
+  <script>
+    const { reactive, effect, readonly, shallowReactive, shallowReadonly } = VueReactivity;
+    // vue3 给了一个 api 可以自动转换响应式
+    const state = reactive({ name: 'ming', age: 20 })
+    const state2 = readonly({ name: 'ming', age: 12 }) // 只读的，不可修改
+    const state4 = shallowReadonly({ name: 'ming', age: 12 }) // 只读的，只有第一层不可修改
+    const state3 = shallowReactive({ name: 'ming', age: 12, arr: [1, 2, 3] }) // 只代理一层，其中 arr 数组不是响应式的
+
+    // vue2 响应式原理， 数据变化要重新执行watcher , 更新视图， 观察者模式 '类'
+
+    // vue3 响应式使用的是 proxy -> 数据更新了， 通知的是 effect '函数'
+    effect(() => { // 副作用函数， 默认先执行一次，如果依赖数据发生变化了，会再次执行
+      app.innerHTML = state.name + state.age
+    })
+
+    setTimeout(() => {
+      state.name = 'hong'
+    }, 3000)
+    console.log(state3);
+    console.log(state3.name);
+    console.log(state3.arr);
+  </script>
+</body>
+
+</html>
