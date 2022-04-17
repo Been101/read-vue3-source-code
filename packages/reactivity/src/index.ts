@@ -1,2 +1,4 @@
-console.log(123)
+
+import share from '@vue/shared'
+console.log(share)
 export const aa = 12

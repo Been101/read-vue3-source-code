@@ -1,1 +1,1 @@
-console.log('share');
+export default {}
