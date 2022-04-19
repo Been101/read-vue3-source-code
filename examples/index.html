@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../packages/reactivity/dist/reactivity.global.js"></script>
+  <script>
+    const { reactive, readonly, shallowReadonly, shallowReactive } = VueReactivity
+    const obj = { name: 'ming', address: [1, 2], hobby: { name: '23' } }
+    const p1 = reactive(obj)
+    const p2 = readonly(obj)
+    const p3 = shallowReadonly(obj)
+    const p4 = shallowReactive(obj)
+
+    p1.address // 取值时会触发 get 方法，然后去执行代理
+    console.log(p1.address, p2.address, p3.address, p4.address);
+    p1.address = 100
+    p1.hobby.name = 23
+  </script>
+</body>
+
+</html>

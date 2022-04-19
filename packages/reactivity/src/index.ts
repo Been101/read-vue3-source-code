@@ -1,4 +1,1 @@
-
-import share from '@vue/shared'
-console.log(share)
-export const aa = 12
+export {reactive, shallowReactive, readonly, shallowReadonly} from './reactive'

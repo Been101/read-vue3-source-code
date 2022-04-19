@@ -7,10 +7,10 @@
  
  const target = 'reactivity'
  
- const targets = fs.readdirSync('packages').filter(item => {
-   // 判断文件或文件夹的状态
-   return fs.statSync(`packages/${item}`).isDirectory()
- })
+//  const targets = fs.readdirSync('packages').filter(item => {
+//    // 判断文件或文件夹的状态
+//    return fs.statSync(`packages/${item}`).isDirectory()
+//  })
  
  async function build(target) {
    console.log(target);
@@ -35,4 +35,4 @@
 //    console.log('打包完毕');
 //  })
  
- console.log(targets);
+//  console.log(targets);
